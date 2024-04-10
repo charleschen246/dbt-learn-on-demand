@@ -9,7 +9,8 @@ customer_orders as (
         select 
         * 
         from {{ ref('customer_order_details') }} ),
-final as (
+finals as (
+
 select p.*,
         row_number() over (order by p.order_id) as transaction_seq,
         row_number() over (partition by customer_id order by p.order_id) as customer_sales_seq,
@@ -23,4 +24,4 @@ select p.*,
 order by order_id)
 
 select *
-from final
+from finals
