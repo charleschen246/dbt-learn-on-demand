@@ -2,9 +2,16 @@ version: 2
 
 sources:
   - name: jaffle_shop
-    database: dbt-tutorial  
-    schema: jaffle_shop  
+    database: dbt-tutorial
+    schema: jaffle_shop
     tables:
       - name: orders
       - name: customers
 
+models:
+  - name: orders
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
