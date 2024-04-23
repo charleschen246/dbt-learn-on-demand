@@ -1,0 +1,10 @@
+version: 2
+
+models:
+    - name: customer_orders
+      description: "A starter dbt model"
+      columns:
+        - name: customer_id
+          description: ""
+          tests:
+            - not_null
