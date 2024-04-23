@@ -7,7 +7,13 @@ models:
         tests:
           - unique
           - not_null
-  - name : orders
+          - dbt_utils.cardinality_equality:
+              field: customer_id
+              to: ref('customers')
+  - name: orders
+    tests:
+      - dbt_utils.fewer_rows_than:
+          compare_model: ref('customers')
     columns:
       - name: order_id
         tests:
